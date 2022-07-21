@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">vNotes</string>
+    <string name="search_text">Search your note’s title here…</string>
+    <string name="note_list">Note List</string>
+    <string name="title_field_hint">Write title here…</string>
+    <string name="text_field_hint">Write content here…</string>
+</resources>
