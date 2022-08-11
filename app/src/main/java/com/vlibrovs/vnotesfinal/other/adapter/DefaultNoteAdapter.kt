@@ -23,8 +23,8 @@ class DefaultNoteAdapter(private val notes: List<Note>) : RecyclerView.Adapter<D
     override fun onBindViewHolder(holder: DefaultNoteViewHolder, position: Int) {
         val note = notes[position]
         holder.binding.apply {
-            noteTitle.text = note.title
-            noteText.text = note.content
+            noteTitle.text = if (note.title.length > 50) note.title.substring(0..50) else note.title
+            noteText.text = if (note.content.length > 150) note.content.substring(0..150) else note.content
             root.setOnClickListener {
                 viewNote(note, root.context)
             }

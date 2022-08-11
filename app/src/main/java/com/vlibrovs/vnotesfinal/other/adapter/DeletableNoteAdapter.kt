@@ -28,8 +28,8 @@ class DeletableNoteAdapter(
     override fun onBindViewHolder(holder: DeletableNoteViewHolder, position: Int) {
         val note = notes[position]
         holder.binding.apply {
-            noteTitle.text = note.title
-            noteText.text = note.content
+            noteTitle.text = if (note.title.length > 50) note.title.substring(0..50) else note.title
+            noteText.text = if (note.content.length > 150) note.content.substring(0..150) else note.content
             deleteButton.setOnClickListener {
                 makeConfirmRequest(this)
             }

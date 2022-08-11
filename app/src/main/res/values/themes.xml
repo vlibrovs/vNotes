@@ -14,4 +14,9 @@
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/poppins_regular</item>
     </style>
+
+    <style name="DeleteButton" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+    </style>
 </resources>
