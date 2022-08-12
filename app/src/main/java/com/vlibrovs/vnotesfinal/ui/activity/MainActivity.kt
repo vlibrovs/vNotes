@@ -1,11 +1,17 @@
 package com.vlibrovs.vnotesfinal.ui.activity
 
 import android.annotation.SuppressLint
+import android.app.SearchManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.EditText
+import android.widget.SearchView
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.vlibrovs.vnotesfinal.data.entity.Note
@@ -50,28 +56,42 @@ class MainActivity : AppCompatActivity() {
             completeButton.setOnClickListener {
                 leaveDeleteMode()
             }
-            searchButton.setOnClickListener {
-                if (searchField.text.toString().isEmpty()) {
-                    viewModel.getNotes().observe(this@MainActivity) {
+            searchField.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    if (query?.isEmpty() == true) {
+                        viewModel.getNotes().observe(this@MainActivity) {
+                            currentNotes.clear()
+                            currentNotes.addAll(it)
+                            defaultNoteAdapter.notifyDataSetChanged()
+                            deletableNoteAdapter.notifyDataSetChanged()
+                        }
+                    } else {
+                        val tempList = mutableListOf<Note>()
+                        for (note in currentNotes) {
+                            if (note.title.contains(query!!, true)) {
+                                tempList.add(note)
+                            }
+                        }
                         currentNotes.clear()
-                        currentNotes.addAll(it)
+                        currentNotes.addAll(tempList)
                         defaultNoteAdapter.notifyDataSetChanged()
                         deletableNoteAdapter.notifyDataSetChanged()
                     }
+                    return false
                 }
-                else {
-                    val tempList = mutableListOf<Note>()
-                    for (note in currentNotes) {
-                        if (note.title.contains(searchField.text.toString(), true)) {
-                            tempList.add(note)
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText?.isEmpty() == true) {
+                        viewModel.getNotes().observe(this@MainActivity) {
+                            currentNotes.clear()
+                            currentNotes.addAll(it)
+                            defaultNoteAdapter.notifyDataSetChanged()
+                            deletableNoteAdapter.notifyDataSetChanged()
                         }
                     }
-                    currentNotes.clear()
-                    currentNotes.addAll(tempList)
-                    defaultNoteAdapter.notifyDataSetChanged()
-                    deletableNoteAdapter.notifyDataSetChanged()
+                    return true
                 }
-            }
+            })
         }
     }
 
@@ -111,6 +131,17 @@ class MainActivity : AppCompatActivity() {
                 defaultNoteAdapter.notifyDataSetChanged()
             }
         }
-        Log.d("DATA", "${currentNotes.size}")
+        if (binding.searchField.query.isNotEmpty()) {
+            val tempList = mutableListOf<Note>()
+            for (note in currentNotes) {
+                if (note.title.contains(binding.searchField.query, true)) {
+                    tempList.add(note)
+                }
+            }
+            currentNotes.clear()
+            currentNotes.addAll(tempList)
+            defaultNoteAdapter.notifyDataSetChanged()
+            deletableNoteAdapter.notifyDataSetChanged()
+        }
     }
 }

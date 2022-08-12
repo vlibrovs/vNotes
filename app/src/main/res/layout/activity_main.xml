@@ -30,28 +30,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pageTitle"
-        android:background="@drawable/rectangle_corner_rounded"
         android:layout_marginTop="30dp"
         android:gravity="center">
 
-        <EditText
+        <SearchView
+            android:queryBackground="@android:color/transparent"
+            android:layoutDirection="rtl"
             android:id="@+id/searchField"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="@string/search_text"
-            android:padding="15dp"
+            android:queryHint="@string/search_text"
             android:textColor="?attr/colorOnPrimary"
             android:textColorHint="?attr/colorSecondary"
             android:textSize="14sp"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/rectangle_corner_rounded" />
 
-        <ImageButton
-            android:id="@+id/searchButton"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:background="@drawable/ic_search_icon"
-            android:layout_margin="15dp"/>
+<!--        <ImageButton-->
+<!--            android:id="@+id/searchButton"-->
+<!--            android:layout_width="22dp"-->
+<!--            android:layout_height="22dp"-->
+<!--            android:background="@drawable/ic_search_icon"-->
+<!--            android:layout_margin="15dp"/>-->
 
 
     </LinearLayout>

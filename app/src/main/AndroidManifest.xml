@@ -4,30 +4,36 @@
     package="com.vlibrovs.vnotesfinal">
 
     <application
+        android:name=".ui.application.VNoteApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
-        android:name=".ui.application.VNoteApplication"
         android:roundIcon="@drawable/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.VNotes"
         tools:targetApi="31">
-        <activity android:name=".ui.activity.EditNoteActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.ViewNoteActivity"
-            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.activity.EditNoteActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.ViewNoteActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
