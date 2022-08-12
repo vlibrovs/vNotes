@@ -10,18 +10,18 @@ import com.vlibrovs.vnotesfinal.data.entity.Note
 import com.vlibrovs.vnotesfinal.databinding.ActivityEditNoteBinding
 import com.vlibrovs.vnotesfinal.other.values.*
 import com.vlibrovs.vnotesfinal.viewmodel.NoteViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class EditNoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditNoteBinding
-    private lateinit var viewModel: NoteViewModel
+    private val viewModel: NoteViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this)[NoteViewModel::class.java]
 
         // If activity called from main activity
         // Creating new note

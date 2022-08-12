@@ -11,11 +11,12 @@ import com.vlibrovs.vnotesfinal.databinding.ActivityNoteViewBinding
 import com.vlibrovs.vnotesfinal.other.contract.EditNoteContract
 import com.vlibrovs.vnotesfinal.viewmodel.NoteViewModel
 import com.vlibrovs.vnotesfinal.other.values.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ViewNoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNoteViewBinding
-    private lateinit var viewModel: NoteViewModel
+    private val viewModel: NoteViewModel by viewModel()
     private val noteEditor = registerForActivityResult(EditNoteContract()) { note ->
         if (note != null) {
             binding.apply {
@@ -30,7 +31,6 @@ class ViewNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityNoteViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this)[NoteViewModel::class.java]
 
         val note = Note(
             id = intent.getIntExtra(ID, -1),

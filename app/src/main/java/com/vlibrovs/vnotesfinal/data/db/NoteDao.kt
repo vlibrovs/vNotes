@@ -11,12 +11,12 @@ interface NoteDao {
     fun getNotes(): LiveData<List<Note>>
 
     @Insert
-    fun insert(note: Note)
+    suspend fun insert(note: Note)
 
     @Delete
-    fun delete(note: Note)
+    suspend fun delete(note: Note)
 
     @Update
-    fun update(note: Note)
+    suspend fun update(note: Note)
 
 }

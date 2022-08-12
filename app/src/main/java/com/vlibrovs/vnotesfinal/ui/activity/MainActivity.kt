@@ -1,27 +1,26 @@
 package com.vlibrovs.vnotesfinal.ui.activity
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
-import com.vlibrovs.vnotesfinal.R
 import com.vlibrovs.vnotesfinal.data.entity.Note
 import com.vlibrovs.vnotesfinal.databinding.ActivityMainBinding
 import com.vlibrovs.vnotesfinal.other.adapter.DefaultNoteAdapter
 import com.vlibrovs.vnotesfinal.other.adapter.DeletableNoteAdapter
 import com.vlibrovs.vnotesfinal.other.values.CREATE_NEW
 import com.vlibrovs.vnotesfinal.viewmodel.NoteViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@SuppressLint("NotifyDataSetChanged")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: NoteViewModel
+    private val viewModel: NoteViewModel by viewModel()
     private val currentNotes = mutableListOf<Note>()
     private lateinit var defaultNoteAdapter: DefaultNoteAdapter
     private lateinit var deletableNoteAdapter: DeletableNoteAdapter
@@ -30,12 +29,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this)[NoteViewModel::class.java]
 
-        viewModel.getNotes().observe(this, Observer {
+        viewModel.getNotes().observe(this) {
             currentNotes.clear()
             currentNotes.addAll(it)
-        })
+        }
 
         defaultNoteAdapter = DefaultNoteAdapter(currentNotes)
         deletableNoteAdapter = DeletableNoteAdapter(currentNotes, viewModel, binding.noteRecyclerView, defaultNoteAdapter, this)
@@ -54,12 +52,12 @@ class MainActivity : AppCompatActivity() {
             }
             searchButton.setOnClickListener {
                 if (searchField.text.toString().isEmpty()) {
-                    viewModel.getNotes().observe(this@MainActivity, Observer {
+                    viewModel.getNotes().observe(this@MainActivity) {
                         currentNotes.clear()
                         currentNotes.addAll(it)
                         defaultNoteAdapter.notifyDataSetChanged()
                         deletableNoteAdapter.notifyDataSetChanged()
-                    })
+                    }
                 }
                 else {
                     val tempList = mutableListOf<Note>()
@@ -105,14 +103,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getNotes().observe(this, Observer {
+        viewModel.getNotes().observe(this) {
             currentNotes.clear()
             currentNotes.addAll(it)
-        })
-
-        binding.apply {
-            noteRecyclerView.adapter = defaultNoteAdapter
-            defaultNoteAdapter.notifyDataSetChanged()
+            binding.apply {
+                noteRecyclerView.adapter = defaultNoteAdapter
+                defaultNoteAdapter.notifyDataSetChanged()
+            }
         }
+        Log.d("DATA", "${currentNotes.size}")
     }
 }
