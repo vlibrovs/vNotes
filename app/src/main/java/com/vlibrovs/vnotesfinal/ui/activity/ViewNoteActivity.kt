@@ -1,11 +1,8 @@
 package com.vlibrovs.vnotesfinal.ui.activity
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.vlibrovs.vnotesfinal.data.entity.Note
 import com.vlibrovs.vnotesfinal.databinding.ActivityNoteViewBinding
 import com.vlibrovs.vnotesfinal.other.contract.EditNoteContract

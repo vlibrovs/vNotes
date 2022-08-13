@@ -1,19 +1,11 @@
 package com.vlibrovs.vnotesfinal.ui.activity
 
 import android.annotation.SuppressLint
-import android.app.SearchManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.SearchView
-import android.widget.TextView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.vlibrovs.vnotesfinal.data.entity.Note
 import com.vlibrovs.vnotesfinal.databinding.ActivityMainBinding
 import com.vlibrovs.vnotesfinal.other.adapter.DefaultNoteAdapter

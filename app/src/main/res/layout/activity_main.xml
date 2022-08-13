@@ -31,7 +31,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pageTitle"
         android:layout_marginTop="30dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:baselineAligned="false">
 
         <SearchView
             android:queryBackground="@android:color/transparent"
@@ -45,14 +46,6 @@
             android:textColorHint="?attr/colorSecondary"
             android:textSize="14sp"
             android:background="@drawable/rectangle_corner_rounded" />
-
-<!--        <ImageButton-->
-<!--            android:id="@+id/searchButton"-->
-<!--            android:layout_width="22dp"-->
-<!--            android:layout_height="22dp"-->
-<!--            android:background="@drawable/ic_search_icon"-->
-<!--            android:layout_margin="15dp"/>-->
-
 
     </LinearLayout>
 
@@ -81,6 +74,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <ImageButton
+        android:contentDescription="@string/add"
         android:id="@+id/addButton"
         android:layout_width="60dp"
         android:layout_height="60dp"

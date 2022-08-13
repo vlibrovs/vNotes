@@ -1,12 +1,7 @@
 package com.vlibrovs.vnotesfinal.data.entity
 
-import android.content.Intent
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.vlibrovs.vnotesfinal.other.values.CONTENT
-import com.vlibrovs.vnotesfinal.other.values.DATE
-import com.vlibrovs.vnotesfinal.other.values.ID
-import com.vlibrovs.vnotesfinal.other.values.TITLE
 import java.text.DateFormat
 import java.util.*
 

@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vlibrovs.vnotesfinal.data.entity.Note
-import com.vlibrovs.vnotesfinal.databinding.ActivityNoteViewBinding
 import com.vlibrovs.vnotesfinal.databinding.DeletableNoteRecyclerItemBinding
 import com.vlibrovs.vnotesfinal.ui.activity.MainActivity
 import com.vlibrovs.vnotesfinal.viewmodel.NoteViewModel
@@ -28,8 +27,8 @@ class DeletableNoteAdapter(
     override fun onBindViewHolder(holder: DeletableNoteViewHolder, position: Int) {
         val note = notes[position]
         holder.binding.apply {
-            noteTitle.text = if (note.title.length > 50) note.title.substring(0..50) else note.title
-            noteText.text = if (note.content.length > 150) note.content.substring(0..150) else note.content
+            noteTitle.text = if (note.title.length > 50) note.title.substring(0..50)+"..." else note.title
+            noteText.text = if (note.content.length > 150) note.content.substring(0..150)+"..." else note.content
             deleteButton.setOnClickListener {
                 makeConfirmRequest(this)
             }
