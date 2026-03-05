@@ -23,3 +23,7 @@
 ![Note View](https://github.com/vlibrovs/vNotes/blob/main/screenshots/note_view.png)
 ![Search](https://github.com/vlibrovs/vNotes/blob/main/screenshots/search.png)
 ![Delete Note](https://github.com/vlibrovs/vNotes/blob/main/screenshots/delete_note.png)
+
+## License
+
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
